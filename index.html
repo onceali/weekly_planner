@@ -41,7 +41,7 @@ h1 {
     padding: 10px 25px 10px 25px;
     border-radius: 10px;
     background: #c3eabf;
-    width: 85vw;
+    width: 70vw;
     color: #fff;
     display: inline-block;
     box-shadow: 2px 2px 1px 0px #330835;
@@ -55,13 +55,13 @@ h1 {
 .clock {
     display: inline;
     font-family: 'Bebas Neue', cursive;
-    font-size: 2em;
+    font-size: 1.5em;
    
 }
 
 .time {
     display: inline;
-    min-width: 37px;
+    min-width: 30px;
 }
 
 .colon {
@@ -73,14 +73,14 @@ h1 {
     display: inline;
     min-width: 162px;
     font-family: 'Bebas Neue', cursive;
-    font-size: 2em;
+    font-size: 1.5em;
     padding-right: 30px;
 }
 .greet{
     
     display:inline;
     font-family: 'Dancing Script', cursive;
-    font-size: 2rem;
+    font-size: 1.5rem;
      padding-right: 30px;
 }
 
@@ -116,11 +116,15 @@ document.getElementById('date').innerHTML = today.toDateString();
 
 function clock() {
 var today = new Date();
-var hour = zeros(tweHour(today.getHours()));
+var hour = zeros(twelveHour(today.getHours()));
 var minutes = zeros(today.getMinutes());
 var seconds = zeros(today.getSeconds());
-if(today.getHours() >=12)
-    
+if(today.getHours() >=12){
+    seconds+=" pm"
+}
+else{
+    seconds+=" am"
+}
 hrs = today.getHours();
 if (hrs < 12)
         greet = 'Good Morning  ';
@@ -135,6 +139,15 @@ document.getElementById('min').innerHTML = minutes;
 document.getElementById('sec').innerHTML = seconds;
 }
 
+function twelveHour(hour) {
+if (hour > 12) {
+    return hour -= 12 
+} else if (hour === 0) {
+    return hour = 12;
+} else {
+    return hour
+}
+}
     
 // adds zero infront of single digit number
 function zeros(num) {
